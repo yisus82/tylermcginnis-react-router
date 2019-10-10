@@ -1,28 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getTeamNames } from '../api';
+import { getTeams } from '../api';
 import TeamLogo from './TeamLogo';
 
 const Home = () => {
-  const [teamNames, setTeamNames] = React.useState([]);
+  const [state, setState] = React.useState({
+    teams: [],
+    loading: true,
+  });
+  const { teams, loading } = state;
 
   React.useEffect(() => {
-    getTeamNames().then(newTeamNames => setTeamNames(() => newTeamNames));
-  }, [teamNames]);
+    getTeams().then(newTeams => {
+      setState(() => ({
+        loading: false,
+        teams: newTeams,
+      }));
+    });
+  }, []);
 
-  return (
-    <div className="container">
-      <h1 className="large-header">Hash History Basketball League</h1>
-      <h3 className="header text-center">Select a team</h3>
-      <div className="home-grid">
-        {teamNames.map(id => (
-          <Link key={id} to={`/${id}`}>
-            <TeamLogo id={id} width="125px" />
-          </Link>
-        ))}
+  return loading ? (
+    <h1 className="text-center">LOADING</h1>
+  ) : (
+      <div className="container">
+        <h1 className="large-header">Hash History Basketball League</h1>
+        <h3 className="header text-center">Select a team</h3>
+        <div className="home-grid">
+          {Object.keys(teams).map(id => (
+            <Link key={id} to={`/${id}`}>
+              <TeamLogo id={id} width="125px" />
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Home;

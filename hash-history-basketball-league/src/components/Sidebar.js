@@ -4,7 +4,7 @@ import slug from 'slug';
 import CustomLink from './CustomLink';
 
 const Sidebar = ({ title, list, loading, location, match }) =>
-  loading === true ? (
+  loading ? (
     <h1>LOADING</h1>
   ) : (
     <div>

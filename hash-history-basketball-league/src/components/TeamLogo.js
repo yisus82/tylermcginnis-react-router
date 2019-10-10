@@ -1031,15 +1031,23 @@ const logos = {
   ),
 };
 
-const TeamLogo = props => (
-  <svg {...props} x="0px" y="0px" viewBox="0 0 125.397 125.397">
-    {logos[props.id]}
+const TeamLogo = ({ id, width = '200px', className = '' }) => (
+  <svg
+    id={id}
+    width={width}
+    className={className}
+    x="0px"
+    y="0px"
+    viewBox="0 0 125.397 125.397"
+  >
+    {logos[id]}
   </svg>
 );
 
 TeamLogo.propTypes = {
   id: PropTypes.string.isRequired,
   width: PropTypes.string,
+  className: PropTypes.string,
 };
 
 TeamLogo.defaultProps = {

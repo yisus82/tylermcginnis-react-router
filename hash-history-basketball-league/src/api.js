@@ -6,11 +6,10 @@ import {
 } from './dummy-data';
 
 let cachedPlayers = null;
-const cachedTeams = {};
-let cachedTeamNames = null;
+let cachedTeams = null;
 
 /**
- * Gets players from a team
+ * Gets players from a team or all of them if no teamId was given
  * @param {string} teamId Team Id
  */
 const getPlayers = teamId =>
@@ -26,28 +25,15 @@ const getPlayers = teamId =>
   });
 
 /**
- * Gets a team
- * @param {string} teamId Team Id
+ * Gets the teams
  */
-const getTeam = teamId =>
+const getTeams = () =>
   new Promise(res => {
-    if (typeof cachedTeams[teamId] === 'undefined') {
-      cachedTeams[teamId] = teams[teamId];
-      return setTimeout(() => res(cachedTeams[teamId]), 800);
+    if (cachedTeams === null) {
+      cachedTeams = teams;
+      return setTimeout(() => res(cachedTeams), 400);
     }
-    return res(cachedTeams[teamId]);
-  });
-
-/**
- * Gets the teams' names
- */
-const getTeamNames = () =>
-  new Promise(res => {
-    if (cachedTeamNames === null) {
-      cachedTeamNames = Object.keys(teams);
-      return setTimeout(() => res(cachedTeamNames), 400);
-    }
-    return res(cachedTeamNames);
+    return res(cachedTeams);
   });
 
 /**
@@ -69,4 +55,4 @@ const getTeamsArticles = teamId =>
     setTimeout(() => res(generateTeamsArticles(teamId)), 700);
   });
 
-export { getPlayers, getTeam, getTeamNames, getArticle, getTeamsArticles };
+export { getPlayers, getTeams, getArticle, getTeamsArticles };
