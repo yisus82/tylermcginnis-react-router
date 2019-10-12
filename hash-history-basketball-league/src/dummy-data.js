@@ -362,7 +362,9 @@ const articleInfo = [
  * @param {number} index Index
  */
 const generateTitle = (teamId, index) =>
-  `${teamId[0].toUpperCase() + teamId.slice(1)} ${articleInfo[index].title}`;
+  articleInfo[index]
+    ? `${teamId[0].toUpperCase() + teamId.slice(1)} ${articleInfo[index].title}`
+    : '';
 
 /**
  * Generates an article
@@ -373,6 +375,10 @@ const generateArticle = (teamId, articleId) => {
   const index = articleInfo
     .map((info, idx) => slug(generateTitle(teamId, idx)))
     .indexOf(articleId);
+
+  if (index === -1) {
+    return {};
+  }
 
   const title = generateTitle(teamId, index);
 
