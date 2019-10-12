@@ -388,7 +388,7 @@ const generateArticle = (teamId, articleId) => {
  * Generates teams' articles
  * @param {string} teamId Team Id
  */
-const generateTeamsArticles = teamId =>
+const generateTeamArticles = teamId =>
   articleInfo.map(({ date }, index) => {
     const updatedTitle = generateTitle(teamId, index);
     return {
@@ -398,4 +398,4 @@ const generateTeamsArticles = teamId =>
     };
   });
 
-export { teams, players, generateArticle, generateTeamsArticles };
+export { teams, players, generateArticle, generateTeamArticles };

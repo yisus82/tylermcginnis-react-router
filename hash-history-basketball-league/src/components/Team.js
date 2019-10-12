@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import TeamLogo from './TeamLogo';
 
 const Team = ({ team }) => {
+  if (!team) {
+    return (
+      <div>
+        <h1 className="text-align-center">Team not found</h1>
+      </div>
+    );
+  }
+
   const { id, name, established, manager, coach } = team;
 
   return (
@@ -29,7 +37,7 @@ const Team = ({ team }) => {
 };
 
 Team.propTypes = {
-  team: PropTypes.object.isRequired,
+  team: PropTypes.object,
 };
 
 export default Team;

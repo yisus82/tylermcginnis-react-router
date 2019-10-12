@@ -2,7 +2,7 @@ import {
   teams,
   players,
   generateArticle,
-  generateTeamsArticles,
+  generateTeamArticles,
 } from './dummy-data';
 
 let cachedPlayers = null;
@@ -29,12 +29,21 @@ const getPlayers = teamId =>
  */
 const getTeams = () =>
   new Promise(res => {
-    if (cachedTeams === null) {
+    if (!cachedTeams) {
       cachedTeams = teams;
       return setTimeout(() => res(cachedTeams), 400);
     }
     return res(cachedTeams);
   });
+
+/**
+ * Gets a teams
+ * @param {string } teamId Team Id
+ */
+const getTeam = teamId =>
+  !cachedTeams
+    ? getTeams().then(() => cachedTeams[teamId])
+    : cachedTeams[teamId];
 
 /**
  * Gets an article
@@ -50,9 +59,9 @@ const getArticle = (teamId, articleId) =>
  * Gets the articles for a given team
  * @param {string} teamId Team Id
  */
-const getTeamsArticles = teamId =>
+const getTeamArticles = teamId =>
   new Promise(res => {
-    setTimeout(() => res(generateTeamsArticles(teamId)), 700);
+    setTimeout(() => res(generateTeamArticles(teamId)), 700);
   });
 
-export { getPlayers, getTeams, getArticle, getTeamsArticles };
+export { getPlayers, getTeams, getTeam, getArticle, getTeamArticles };

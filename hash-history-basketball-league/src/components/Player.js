@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Player = ({ player }) => {
+  if (!player) {
+    return (
+      <div className="panel">
+        <h1 className="text-align-center">Player not found</h1>
+      </div>
+    );
+  }
+
   const { name, position, teamId, number, avatar, apg, ppg, rpg, spg } = player;
 
   return (
@@ -44,7 +52,7 @@ const Player = ({ player }) => {
 };
 
 Player.propTypes = {
-  player: PropTypes.object.isRequired,
+  player: PropTypes.object,
 };
 
 export default Player;
