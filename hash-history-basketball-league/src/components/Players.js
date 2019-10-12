@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { parse } from 'qs';
 import slug from 'slug';
 import { getPlayers } from '../api';
@@ -51,11 +52,16 @@ const Players = ({ match, location }) => {
         path={`${match.url}/:playerId`}
         render={routeProps =>
           loading ? null : (
-            <Player
-              player={players.find(
-                player => slug(player.name) === routeProps.match.params.playerId
-              )}
-            />
+            <TransitionGroup className="panel">
+              <CSSTransition key={location.key} classNames="fade" timeout={250}>
+                <Player
+                  player={players.find(
+                    player =>
+                      slug(player.name) === routeProps.match.params.playerId
+                  )}
+                />
+              </CSSTransition>
+            </TransitionGroup>
           )
         }
       />
