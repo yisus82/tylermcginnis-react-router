@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import slug from 'slug';
 import TeamLogo from './TeamLogo';
+import Loading from './Loading';
 
 const TeamInfo = ({ team, articles, match }) => {
   const {
@@ -18,7 +19,7 @@ const TeamInfo = ({ team, articles, match }) => {
 
   return !articles ? (
     <div className="panel">
-      <h1 className="text-align-center">LOADING</h1>
+      <Loading />
     </div>
   ) : (
     <div className="panel">

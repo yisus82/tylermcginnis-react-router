@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getTeams } from '../api';
 import TeamLogo from './TeamLogo';
+import Loading from './Loading';
 
 const Home = () => {
   const [state, setState] = React.useState({
@@ -20,7 +21,7 @@ const Home = () => {
   }, []);
 
   return loading ? (
-    <h1 className="text-center">LOADING</h1>
+    <Loading />
   ) : (
     <div className="container">
       <h1 className="large-header">Hash History Basketball League</h1>

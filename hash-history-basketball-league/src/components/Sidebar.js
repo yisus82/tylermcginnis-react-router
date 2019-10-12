@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import slug from 'slug';
 import CustomLink from './CustomLink';
+import Loading from './Loading';
 
 const Sidebar = ({ title, list, loading, location, match }) =>
   loading ? (
-    <h1>LOADING</h1>
+    <Loading />
   ) : (
     <div>
       <h3 className="header">{title}</h3>

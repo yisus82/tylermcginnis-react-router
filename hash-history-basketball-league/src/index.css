@@ -183,6 +183,10 @@ a {
   margin: 0 10px;
 }
 
+.loading-text {
+  font-size: 35px;
+}
+
 @media (max-width: 680px) {
   .container {
     padding: 8px;

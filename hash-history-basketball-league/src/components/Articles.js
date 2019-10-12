@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { getTeamArticles } from '../api';
 import Sidebar from './Sidebar';
 import Article from './Article';
+import Loading from './Loading';
 
 const Articles = ({ match, location }) => {
   const [state, setState] = React.useState({
@@ -31,7 +32,7 @@ const Articles = ({ match, location }) => {
   React.useEffect(() => fetchTeamArticles(teamId), [teamId]);
 
   return loading ? (
-    <h1>LOADING</h1>
+    <Loading />
   ) : (
     <div className="container two-column">
       <Sidebar

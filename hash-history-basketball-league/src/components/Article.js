@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getArticle } from '../api';
+import Loading from './Loading';
 
 const Article = ({ teamId, articleId }) => {
   const [article, setArticle] = React.useState(null);
@@ -30,7 +31,7 @@ const Article = ({ teamId, articleId }) => {
 
   return !article ? (
     <div className="panel">
-      <h1 className="text-align-center">LOADING</h1>
+      <Loading />
     </div>
   ) : (
     <div className="panel">
